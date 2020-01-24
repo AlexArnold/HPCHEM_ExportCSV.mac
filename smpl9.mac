@@ -1,0 +1,85 @@
+NAME smpl9
+ Print "---start---"			
+
+ listmessages on 
+ setverbose 0
+
+ Parameter obj default 1 , evttab$ default "Event" , _ERROR
+ on error goto ErrorHandler
+ !=========================
+! zzstClearSamples
+! zzstLoadSamples
+
+ Local k,n,m, cols
+ Local sm1$, sm2$, pth$, fln$, fln0$, fln1$, Line$, i, j, e
+ !i = asc("Z") - asc("A") + 1
+ i=1
+ j=1
+ e=1
+Open "C:\" + "csvlist1.log" for input  as #7 
+for i =1 to 78		!170
+	sm1$=""
+	sm2$=""
+	fln$=""
+	fln0$=""
+	fln1$=""
+
+	Input  #7, Line$ 
+	Print i, Line$, _Error !!, _ERRLINE 
+	
+	LoadObj Line$,,samples
+	
+	PRINT _DataPath$, _DataFile$
+	k = InStr(Line$, ".sd")		!UperCase  LowerCaseintensive Registr Large Smoll ?????????????????????????????
+	print ". =", k
+
+	 fln$=Line$		!_DataFile$
+	 print fln$[1:(k-1)]
+
+	 fln0$=fln$[1:(k-1)]
+	! !fln1$="C:\"+ fln0$ +".csv"
+	 fln1$=fln0$ +".csv" 	!_DataPath$ + fln0$ +".csv"
+	 print fln1$
+	 print RegSize(Chromreg)
+	 print RegSize(Samples)
+
+	 for j = 1 to RegSize(Samples) 
+		 cols=DataCols(Samples[j])
+		 !print "i=", i
+	 next j
+	 print "cols=", cols
+
+	 Open fln1$ For Output as #6
+		 for j=1 to cols
+			! !!!!!Print Val$(i)	
+			 sm1$ = Val$(Data(Samples[1],0,j) )
+			 for e = 1 to RegSize(Samples) 
+				 sm1$ = sm1$ + "; " + Val$(Data(Samples[e],1,j))
+			 next e
+			
+			 print #6, sm1$
+		 next j
+	 Close #6
+
+
+
+	 DelObj Samples
+
+	!stop
+next i
+close #7
+
+
+
+
+ Print "---end---"
+			
+ !====
+ RETURN
+ !====
+ ErrorHandler:
+ Print "Error Open File Input #"
+ Close #7
+ !RETURN
+
+ ENDMACRO

@@ -1,0 +1,130 @@
+MenuAdd "&Export", "ClearLoadExport",		"mcr8",,"ClearReadExport"
+
+
+MenuAdd "&Export",		,"SEPARATOR"
+MenuAdd "&Export", "ClearLoad",			"mcrClearLoad",, "load macro"
+MenuAdd "&Export", "Export SampleSpectra",	"mcr6",,"export spectra2"
+
+MenuAdd "&Export",		,"SEPARATOR"
+MenuAdd "&Export", "Clear...",			"mcrClear",, "load macro"
+MenuAdd "&Export", "Load...",			"mcrLoad",,  "load macro"
+
+
+MenuAdd "&Export", 		,"SEPARATOR"
+
+MenuAdd "&Export", "Debug Message...",		"mcr1",,"load macro"
+MenuAdd "&Export", "cmd Verbose =0",		"mcrx0",,"load macro"
+MenuAdd "&Export", "cmd Verbose =3",		"mcrx3",,"load macro"
+
+MenuAdd "&Export", 		,"SEPARATOR"
+MenuAdd "&Export", "Macro Load ...",		"mcr0",,"load macro"
+MenuAdd "&Export", "speckint.mac",		"mcr3",,"export 123"
+MenuAdd "&Export", "List2",			"mcr4",,"export 123"
+MenuAdd "&Export", "speckin.mac",		"mcr5",,"export 123"
+MenuAdd "&Export", "Export 123",		"mcr7",,"export 123"
+MenuAdd "&Export", "OpenTXT_file",		"mcr9",,"export 123"
+
+!******************************************************************************
+!                       A U T O S T A R T
+!******************************************************************************
+!   DESCRIPTION
+!       Auto start macro to e.g. initialize users macro world. If there is no
+!       special initialization neccessary, please do NOT activate this macro.
+!   NOTE:   Please remove the '!' before 'NAME   UM_AutoStart' and
+!           'ENDMACRO' to activate this macro
+!   RETURN
+!       None
+!   body of macro UM_AutoStart
+NAME    UM_AutoStart
+listmessages on   
+Logging 7, "C:\HPCHEM\UVEXE\USERMAC\DEBUG.LOG"
+!setverbose 3		! Очень подробное протоколирование выполнения операций
+
+print "run hpchem :)"
+ENDMACRO
+!******************************************************************************
+!------------------------------------------------------------------------------
+!------------------------------------------------------------------------------
+NAME mcrX0
+	listmessages on   
+	Logging 7, "C:\HPCHEM\UVEXE\USERMAC\DEBUG.LOG"
+	setverbose 0		! 3= Очень подробное протоколирование выполнения операций
+ENDMACRO
+
+NAME mcrX3
+	listmessages on   
+	Logging 7, "C:\HPCHEM\UVEXE\USERMAC\DEBUG.LOG"
+	setverbose 3		! 3= Очень подробное протоколирование выполнения операций
+ENDMACRO
+!------------------------------------------------------------------------------
+NAME mcr1
+	macro "C:\HPCHEM\UVEXE\USERMAC\mtregdbg.mac"
+ENDMACRO
+!------------------------------------------------------------------------------
+NAME mcr0
+	macro
+ENDMACRO
+
+!------------------------------------------------------------------------------
+!------------------------------------------------------------------------------
+!------------------------------------------------------------------------------
+!------------------------------------------------------------------------------
+NAME mcr6
+	macro "C:\HPCHEM\UVEXE\USERMAC\smpl6.mac"
+	smpl6
+ENDMACRO
+
+NAME mcr7
+	macro "C:\HPCHEM\UVEXE\USERMAC\smpl7.mac"
+	smpl7
+ENDMACRO
+
+!------------------------------------------------------------------------------
+NAME mcr4
+	macro "C:\HPCHEM\UVEXE\USERMAC\list2.mac"
+	list2
+ENDMACRO
+
+!
+NAME mcr5
+	macro "C:\HPCHEM\UVEXE\USERMAC\speckin.mac"
+	speckin
+ENDMACRO
+
+NAME mcr3
+	macro "C:\HPCHEM\UVEXE\USERMAC\speckint.mac"
+	speckin
+ENDMACRO
+
+
+!------------------------------------------------------------------------------
+NAME mcrClear
+	zzstClearSamples
+ENDMACRO
+NAME mcrLoad
+	zzstLoadSamples
+ENDMACRO
+NAME mcrClearLoad
+	zzstClearSamples
+	zzstLoadSamples
+ENDMACRO
+!------------------------------------------------------------------------------
+NAME mcr8
+	macro "C:\HPCHEM\UVEXE\USERMAC\smpl8.mac"
+	smpl8
+
+ENDMACRO
+
+NAME mcr9
+	macro "C:\HPCHEM\UVEXE\USERMAC\smpl9.mac"
+	smpl9
+
+ENDMACRO
+
+
+!
+!------------------------------------------------------------------------------
+
+
+
+
